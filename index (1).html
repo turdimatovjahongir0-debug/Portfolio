@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jahongir Turdimatov — Network & System Administrator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #0f172a;
+    --border: #1e293b;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --hint: #334155;
+    --accent: #38bdf8;
+    --accent-bg: #0c1a2e;
+    --accent-border: #1e3a5f;
+    --green: #4ade80;
+    --green-bg: #052e16;
+    --green-border: #14532d;
+    --orange: #fb923c;
+    --orange-bg: #1c0a00;
+    --orange-border: #431407;
+  }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  nav {
+    background: rgba(10,10,15,0.95);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--accent-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #f1f5f9;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .hero-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .hero-desc {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 460px;
+    line-height: 1.7;
+  }
+  .badge-active {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+  .dot-live {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: blink 1.5s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section { padding: 2.5rem 0; }
+  .section + .section { border-top: 1px solid var(--border); }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--hint);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+  }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    transition: border-color 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); }
+  .skill-icon { font-size: 18px; color: var(--accent); margin-bottom: 8px; }
+  .skill-name { font-size: 13px; font-weight: 500; color: #f1f5f9; margin-bottom: 4px; }
+  .skill-items { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    gap: 16px;
+    transition: border-color 0.2s;
+  }
+  .exp-card:hover { border-color: var(--accent-border); }
+  .exp-line {
+    width: 2px;
+    background: var(--accent-border);
+    border-radius: 2px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .exp-line::before {
+    content: '';
+    position: absolute;
+    top: 4px; left: -3px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  .exp-role { font-size: 15px; font-weight: 500; color: #f1f5f9; margin-bottom: 3px; }
+  .exp-company { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .exp-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--hint);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge-faol {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tag {
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.2s;
+  }
+  .info-card:hover { border-color: var(--accent-border); }
+  .info-icon {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .info-icon.blue { background: var(--accent-bg); border: 1px solid var(--accent-border); color: var(--accent); }
+  .info-icon.orange { background: var(--orange-bg); border: 1px solid var(--orange-border); color: var(--orange); }
+  .info-name { font-size: 13px; font-weight: 500; color: #f1f5f9; margin-bottom: 2px; }
+  .info-sub { font-size: 11px; color: var(--muted); }
+
+  .contacts { display: flex; flex-direction: column; gap: 8px; }
+  .contact-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .contact-item:hover { border-color: var(--accent); }
+  .contact-icon { font-size: 18px; color: var(--accent); width: 22px; text-align: center; }
+  .contact-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--hint); margin-bottom: 1px; }
+  .contact-val { font-size: 13px; color: #94a3b8; }
+
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--hint);
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .hero { flex-direction: column; gap: 1rem; padding: 2.5rem 1.25rem 2rem; }
+    .main { padding: 0 1.25rem; }
+    nav { padding: 0 1.25rem; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">jt@portfolio:~$</span>
+  <div class="nav-links">
+    <a href="#tajriba">tajriba</a>
+    <a href="#talim">ta'lim</a>
+    <a href="#boglanish">bog'lanish</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="avatar">JT</div>
+  <div>
+    <h1>Jahongir Turdimatov</h1>
+    <div class="hero-role">// Network & System Administrator</div>
+    <p class="hero-desc">Xavfsiz, tez va barqaror IT infratuzilmalarni qurish va boshqarishga ixtisoslashgan tarmoq va tizim mutaxassisi.</p>
+    <div class="badge-active">
+      <span class="dot-live"></span>
+      online · Cambridge Learning Center
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="section">
+    <div class="section-label">ko'nikmalar</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">&#xe51b;</div>
+        <div class="skill-name">Tarmoq</div>
+        <div class="skill-items">Cisco · MikroTik · VLAN · VPN · BGP · OSPF</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#xeab3;</div>
+        <div class="skill-name">Serverlar</div>
+        <div class="skill-items">Windows Server · Linux · Active Directory · DNS · DHCP</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#xeb4d;</div>
+        <div class="skill-name">Xavfsizlik</div>
+        <div class="skill-items">Firewall · IDS/IPS · SSL/TLS · Monitoring</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">&#xebd5;</div>
+        <div class="skill-name">IT Support</div>
+        <div class="skill-items">Help desk · Troubleshooting · Foydalanuvchi support</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="tajriba">
+    <div class="section-label">ish tajribasi</div>
+    <div class="exp-card">
+      <div class="exp-line"></div>
+      <div style="flex:1;">
+        <div class="exp-role">Technical Support Specialist</div>
+        <div class="exp-company">Cambridge Learning Center</div>
+        <div class="exp-date">
+          Apr 2026 — hozir
+          <span class="badge-faol">faol</span>
+        </div>
+        <div class="tags">
+          <span class="tag">IT support</span>
+          <span class="tag">Tarmoq sozlash</span>
+          <span class="tag">Uskunalar</span>
+          <span class="tag">Troubleshooting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="talim">
+    <div class="section-label">ta'lim & sertifikat</div>
+    <div class="two-col">
+      <div class="info-card">
+        <div class="info-icon blue">🎓</div>
+        <div>
+          <div class="info-name">Olmaliq davlat texnika instituti</div>
+          <div class="info-sub">Konchilik ishi fakulteti</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon orange">🏆</div>
+        <div>
+          <div class="info-name">Cisco CCNA</div>
+          <div class="info-sub">Ilm.uz IT Akademiyasi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="boglanish">
+    <div class="section-label">bog'lanish</div>
+    <div class="contacts">
+      <a class="contact-item" href="mailto:turdimatovjahongir0@gmail.com">
+        <span class="contact-icon">✉</span>
+        <div>
+          <div class="contact-lbl">email</div>
+          <div class="contact-val">turdimatovjahongir0@gmail.com</div>
+        </div>
+      </a>
+      <a class="contact-item" href="tel:+998994866992">
+        <span class="contact-icon">📞</span>
+        <div>
+          <div class="contact-lbl">telefon</div>
+          <div class="contact-val">+998 99 486 69 92</div>
+        </div>
+      </a>
+      <a class="contact-item" href="https://t.me/jakhongir00000" target="_blank">
+        <span class="contact-icon">✈</span>
+        <div>
+          <div class="contact-lbl">telegram</div>
+          <div class="contact-val">@jakhongir00000</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<footer>© 2026 · jahongir turdimatov · network & system administrator</footer>
+
+</body>
+</html>
