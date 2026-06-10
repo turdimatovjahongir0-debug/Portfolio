@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xizmatlar — Jahongir Turdimatov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0a0f;
+    --surface: #0f172a;
+    --border: #1e293b;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --hint: #334155;
+    --accent: #38bdf8;
+    --accent-bg: #0c1a2e;
+    --accent-border: #1e3a5f;
+    --green: #4ade80;
+    --green-bg: #052e16;
+    --green-border: #14532d;
+    --orange: #fb923c;
+    --orange-bg: #1c0a00;
+    --orange-border: #431407;
+    --purple: #a78bfa;
+    --purple-bg: #1e1040;
+    --purple-border: #3b1d8a;
+  }
+  body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  nav {
+    background: rgba(10,10,15,0.95);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px; position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--accent); letter-spacing: 0.05em; text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+  .hero {
+    max-width: 900px; margin: 0 auto;
+    padding: 4rem 2rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .hero h1 { font-size: 28px; font-weight: 600; color: #f1f5f9; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .hero p { font-size: 15px; color: var(--muted); max-width: 520px; line-height: 1.7; }
+
+  .main { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 2.5rem 0; }
+  .section + .section { border-top: 1px solid var(--border); }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--hint);
+    margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+  .service-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.4rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .service-card:hover { border-color: var(--accent-border); transform: translateY(-2px); }
+  .service-card.green:hover { border-color: var(--green-border); }
+  .service-card.orange:hover { border-color: var(--orange-border); }
+  .service-card.purple:hover { border-color: var(--purple-border); }
+
+  .service-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .service-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .service-icon.blue { background: var(--accent-bg); border: 1px solid var(--accent-border); }
+  .service-icon.green { background: var(--green-bg); border: 1px solid var(--green-border); }
+  .service-icon.orange { background: var(--orange-bg); border: 1px solid var(--orange-border); }
+  .service-icon.purple { background: var(--purple-bg); border: 1px solid var(--purple-border); }
+
+  .service-name { font-size: 15px; font-weight: 500; color: #f1f5f9; }
+  .service-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+  .service-items { display: flex; flex-direction: column; gap: 6px; }
+  .service-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 12px; color: #94a3b8;
+  }
+  .service-item::before {
+    content: '›';
+    color: var(--accent); font-weight: 600; flex-shrink: 0; margin-top: 1px;
+  }
+  .service-card.green .service-item::before { color: var(--green); }
+  .service-card.orange .service-item::before { color: var(--orange); }
+  .service-card.purple .service-item::before { color: var(--purple); }
+
+  .cta-box {
+    background: var(--surface); border: 1px solid var(--accent-border);
+    border-radius: 12px; padding: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; flex-wrap: wrap;
+  }
+  .cta-title { font-size: 16px; font-weight: 500; color: #f1f5f9; margin-bottom: 4px; }
+  .cta-sub { font-size: 13px; color: var(--muted); }
+  .cta-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 500; padding: 8px 16px;
+    border-radius: 8px; text-decoration: none; transition: opacity 0.2s;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: var(--accent); color: #0a0a0f; }
+  .btn-secondary { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+
+  footer {
+    max-width: 900px; margin: 0 auto; padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--hint); text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 1.25rem 2rem; }
+    .main { padding: 0 1.25rem; }
+    nav { padding: 0 1.25rem; }
+    .cta-box { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">jt@portfolio:~$</a>
+  <div class="nav-links">
+    <a href="index.html">bosh sahifa</a>
+    <a href="xizmatlar.html" class="active">xizmatlar</a>
+    <a href="index.html#boglanish">bog'lanish</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">// services.list</div>
+  <h1>Xizmatlar</h1>
+  <p>Tizim va tarmoq administratori sifatida ko'rsatadigan professional IT xizmatlarim. Har qanday muammo uchun tez va samarali yechim.</p>
+</div>
+
+<div class="main">
+
+  <div class="section">
+    <div class="section-label">tizim xizmatlari</div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-icon blue">🖥️</div>
+          <div class="service-name">Windows O'rnatish</div>
+        </div>
+        <div class="service-desc">Kompyuter va noutbuklarga Windows operatsion tizimini o'rnatish va sozlash.</div>
+        <div class="service-items">
+          <div class="service-item">Windows 10 / 11 o'rnatish</div>
+          <div class="service-item">Drayverlarni o'rnatish va yangilash</div>
+          <div class="service-item">Litsenziyalash va faollashtirish</div>
+          <div class="service-item">Tizimni optimallash</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-icon blue">🔧</div>
+          <div class="service-name">Tizim Muammolarini Hal Etish</div>
+        </div>
+        <div class="service-desc">Kompyuterlardagi har xil tizim xatolari va nosozliklarni bartaraf etish.</div>
+        <div class="service-items">
+          <div class="service-item">Virus va zararli dasturlardan tozalash</div>
+          <div class="service-item">Tizim sekinlashuvini bartaraf etish</div>
+          <div class="service-item">Blue screen (BSOD) xatolarini tuzatish</div>
+          <div class="service-item">Ma'lumotlarni tiklash</div>
+        </div>
+      </div>
+
+      <div class="service-card green">
+        <div class="service-top">
+          <div class="service-icon green">📦</div>
+          <div class="service-name">Dasturiy Ta'minot</div>
+        </div>
+        <div class="service-desc">Kerakli dasturlarni o'rnatish, sozlash va yangilash.</div>
+        <div class="service-items">
+          <div class="service-item">Microsoft Office o'rnatish</div>
+          <div class="service-item">Antivirus o'rnatish va sozlash</div>
+          <div class="service-item">Maxsus dasturlarni sozlash</div>
+          <div class="service-item">Zaxira nusxa (backup) tizimi</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">tarmoq xizmatlari</div>
+    <div class="services-grid">
+
+      <div class="service-card orange">
+        <div class="service-top">
+          <div class="service-icon orange">🌐</div>
+          <div class="service-name">Internet O'rnatish & Sozlash</div>
+        </div>
+        <div class="service-desc">Uy va ofislarga internet ulash, router va modemlarni sozlash.</div>
+        <div class="service-items">
+          <div class="service-item">Router va modem sozlash</div>
+          <div class="service-item">Wi-Fi tarmoq yaratish va xavfsizlash</div>
+          <div class="service-item">Internet tezligini optimallashtirish</div>
+          <div class="service-item">Tarmoq muammolarini bartaraf etish</div>
+        </div>
+      </div>
+
+      <div class="service-card orange">
+        <div class="service-top">
+          <div class="service-icon orange">🏢</div>
+          <div class="service-name">Ofis Tarmog'ini Ulash</div>
+        </div>
+        <div class="service-desc">Ofis va korxonalar uchun kabel va simsiz tarmoq infratuzilmasini qurish.</div>
+        <div class="service-items">
+          <div class="service-item">LAN kabel tortish va ulash</div>
+          <div class="service-item">Switch va router sozlash</div>
+          <div class="service-item">VLAN va tarmoq segmentatsiyasi</div>
+          <div class="service-item">Barcha qurilmalarni tarmoqqa ulash</div>
+        </div>
+      </div>
+
+      <div class="service-card orange">
+        <div class="service-top">
+          <div class="service-icon orange">🔒</div>
+          <div class="service-name">Tarmoq Xavfsizligi</div>
+        </div>
+        <div class="service-desc">Tarmoqni tashqi tahdidlardan himoya qilish va monitoring.</div>
+        <div class="service-items">
+          <div class="service-item">Firewall sozlash</div>
+          <div class="service-item">VPN ulash va sozlash</div>
+          <div class="service-item">Tarmoq monitoringi</div>
+          <div class="service-item">Parol va kirish nazorati</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">uskunalar o'rnatish</div>
+    <div class="services-grid">
+
+      <div class="service-card purple">
+        <div class="service-top">
+          <div class="service-icon purple">📹</div>
+          <div class="service-name">Kamera O'rnatish & Sozlash</div>
+        </div>
+        <div class="service-desc">CCTV va IP kameralarni o'rnatish, sozlash va masofadan kuzatish tizimini ulash.</div>
+        <div class="service-items">
+          <div class="service-item">IP va analog kameralarni o'rnatish</div>
+          <div class="service-item">DVR / NVR registratorni sozlash</div>
+          <div class="service-item">Telefonga ulash (masofadan ko'rish)</div>
+          <div class="service-item">Kamera joylashuvini rejalashtirish</div>
+        </div>
+      </div>
+
+      <div class="service-card purple">
+        <div class="service-top">
+          <div class="service-icon purple">🖨️</div>
+          <div class="service-name">Printer & Axborot Uskunalari</div>
+        </div>
+        <div class="service-desc">Printer, skaner va boshqa ofis uskunalarini o'rnatish va tarmoqqa ulash.</div>
+        <div class="service-items">
+          <div class="service-item">Printer o'rnatish va sozlash</div>
+          <div class="service-item">Tarmoq printerini ulash</div>
+          <div class="service-item">Skaner sozlash</div>
+          <div class="service-item">Umumiy foydalanish sozlamalari</div>
+        </div>
+      </div>
+
+      <div class="service-card green">
+        <div class="service-top">
+          <div class="service-icon green">🖧</div>
+          <div class="service-name">Server & Active Directory</div>
+        </div>
+        <div class="service-desc">Kichik va o'rta biznes uchun server infratuzilmasini qurish va boshqarish.</div>
+        <div class="service-items">
+          <div class="service-item">Windows Server o'rnatish</div>
+          <div class="service-item">Active Directory sozlash</div>
+          <div class="service-item">DNS va DHCP server</div>
+          <div class="service-item">Foydalanuvchi hisoblari boshqaruvi</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">bog'lanish</div>
+    <div class="cta-box">
+      <div>
+        <div class="cta-title">Xizmat kerakmi? Bog'laning!</div>
+        <div class="cta-sub">Har qanday IT muammoingiz uchun tez va arzon yechim taqdim etaman.</div>
+      </div>
+      <div class="cta-btns">
+        <a class="btn btn-primary" href="https://t.me/jakhongir00000" target="_blank">✈ Telegram</a>
+        <a class="btn btn-secondary" href="tel:+998994866992">📞 +998 99 486 69 92</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>© 2026 · jahongir turdimatov · network & system administrator</footer>
+
+</body>
+</html>
